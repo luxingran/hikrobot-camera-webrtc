@@ -8,7 +8,7 @@ def main():
 
     import hikcamera_native
 
-    out_dir = Path(r"D:\camera_service_native\out")
+    out_dir = Path("out")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     devices = hikcamera_native.HikrobotCamera.enum_devices()

@@ -3,7 +3,7 @@ import os
 import sys
 
 
-conda = r"D:\Program\miniconda3"
+conda = os.environ.get("CONDA_PREFIX", r"C:\path\to\miniconda3")
 os.environ["PATH"] = (
     conda
     + ";"
@@ -12,7 +12,7 @@ os.environ["PATH"] = (
     + os.environ.get("PATH", "")
 )
 
-sys.path.insert(0, str(Path(r"D:\camera_service_native\build")))
+sys.path.insert(0, str(Path(sys.argv[1]) if len(sys.argv) > 1 else Path("build")))
 
 print("before import with conda path")
 import hikcamera_native

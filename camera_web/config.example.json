@@ -1,0 +1,26 @@
+{
+  "native": {
+    "module_dir": "D:/path/to/native/build"
+  },
+  "cameras": {
+    "usb_side": {
+      "serial": "YOUR_USB_CAMERA_SERIAL",
+      "transport": "USB3Vision",
+      "pixel_format": "BayerRG8",
+      "stream": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "gige_top": {
+      "serial": "YOUR_GIGE_CAMERA_SERIAL",
+      "transport": "GigE",
+      "ip": "192.168.1.100",
+      "pixel_format": "BayerGB8",
+      "stream": {
+        "width": 1920,
+        "height": 1080
+      }
+    }
+  }
+}

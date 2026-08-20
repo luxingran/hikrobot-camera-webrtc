@@ -1,9 +1,13 @@
 $ErrorActionPreference = "Stop"
 
-$ProjectDir = "D:\camera_service_native"
-$CMake = "C:\Users\lxr\Tools\cmake-4.3.3-windows-x86_64\bin\cmake.exe"
-$VcVars = "D:\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
-$PythonExe = "D:\Program\Python311\python.exe"
+param(
+    [string]$ProjectDir = (Resolve-Path ".").Path,
+    [string]$CMake = "cmake",
+    [string]$VcVars = "C:\Path\To\BuildTools\VC\Auxiliary\Build\vcvars64.bat",
+    [string]$PythonExe = "C:\Path\To\Python311\python.exe",
+    [string]$Proxy = ""
+)
+
 $BuildDir = Join-Path $ProjectDir "build_py311"
 
 if (-not (Test-Path $PythonExe)) {
@@ -13,7 +17,11 @@ if (-not (Test-Path $PythonExe)) {
 & $PythonExe -m pip show pybind11 | Out-Null
 if ($LASTEXITCODE -ne 0) {
     try {
-        & $PythonExe -m pip install --proxy "http://192.168.0.250:7890" "pybind11==2.13.6"
+        if ($Proxy) {
+            & $PythonExe -m pip install --proxy $Proxy "pybind11==2.13.6"
+        } else {
+            & $PythonExe -m pip install "pybind11==2.13.6"
+        }
     } catch {
         & $PythonExe -m pip install "pybind11==2.13.6"
     }

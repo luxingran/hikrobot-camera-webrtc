@@ -13,6 +13,11 @@ MvSdkLog/
 *.obj
 *.exe
 *.log
+*.h264
+*.mp4
+*.jpg
+*.jpeg
+*.png
 .DS_Store
 
 # Runtime-generated certificates / keys.
@@ -25,3 +30,6 @@ auto.key
 .env
 .venv/
 venv/
+
+# Local camera configuration.
+camera_web/config.json

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import socket
 import subprocess
 import sys
@@ -51,7 +52,10 @@ CONFIG_PATH = (
     / "config.json"
 )
 
-PUBLIC_HOST = "192.168.0.253"
+PUBLIC_HOST = os.environ.get(
+    "CAMERA_WEB_PUBLIC_HOST",
+    "127.0.0.1",
+)
 
 WEB_HOST = "0.0.0.0"
 WEB_PORT = 8080
@@ -126,15 +130,7 @@ def get_native_module_dir(
         return value
 
 
-    #
-    # 当前你实际使用的目录
-    # 如果不是这个，改这一处即可
-    #
-
-    return (
-        r"D:\camera_service_native"
-        r"\abc_py311"
-    )
+    return str(ROOT_DIR.parent / "build")
 
 
 # ============================================================
