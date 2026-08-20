@@ -576,4 +576,16 @@ Possible future work:
 
 ## License
 
-No license has been selected yet. Add a `LICENSE` file before treating this as a reusable open-source project.
+This is an independent community project and is not affiliated with,
+endorsed by, or sponsored by HIKROBOT.
+
+HIKROBOT and MVS are trademarks and/or products of their respective owners.
+The HIKROBOT MVS SDK is not distributed with this project and must be
+obtained separately from HIKROBOT.
+
+FFmpeg and MediaMTX are third-party projects and are subject to their
+respective licenses.
+
+Unless otherwise noted, the MIT License in this repository applies only
+to the original source code authored for this project. It does not grant
+any rights to third-party software, SDKs, trademarks, or other materials.
