@@ -1,0 +1,27 @@
+build/
+build_py311/
+out/
+data/
+logs/
+MvSdkLog/
+**/MvSdkLog/
+**/__pycache__/
+*.py[cod]
+*.pyd
+*.dll
+*.lib
+*.obj
+*.exe
+*.log
+.DS_Store
+
+# Runtime-generated certificates / keys.
+auto.crt
+auto.key
+*.crt
+*.key
+
+# Local environment files.
+.env
+.venv/
+venv/

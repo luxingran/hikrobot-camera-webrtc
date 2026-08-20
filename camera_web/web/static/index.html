@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Camera Monitor</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: #101216;
+
+            color: #ffffff;
+
+            font-family:
+                Arial,
+                "Microsoft YaHei",
+                sans-serif;
+        }
+
+
+        body {
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
+        }
+
+
+        .header {
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 24px;
+
+            background: #191c22;
+
+            border-bottom: 1px solid #30343c;
+        }
+
+
+        .title {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+
+        .status {
+            font-size: 14px;
+
+            color: #aeb5c0;
+        }
+
+
+        .camera-container {
+            flex: 1;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(0, 1fr);
+
+            gap: 16px;
+
+            padding: 16px;
+
+            min-height: 0;
+        }
+
+
+        .camera-card {
+            display: flex;
+            flex-direction: column;
+
+            min-width: 0;
+            min-height: 0;
+
+            border: 1px solid #30343c;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            background: #191c22;
+        }
+
+
+        .camera-header {
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 16px;
+
+            flex-shrink: 0;
+
+            border-bottom: 1px solid #30343c;
+        }
+
+
+        .camera-name {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+
+        .camera-info {
+            font-size: 13px;
+
+            color: #9da5b1;
+        }
+
+
+        .video-box {
+            flex: 1;
+
+            min-height: 0;
+
+            position: relative;
+
+            background: #000000;
+        }
+
+
+        iframe {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            left: 0;
+            top: 0;
+
+            border: 0;
+
+            background: #000000;
+        }
+
+
+        @media (
+            max-width: 900px
+        ) {
+
+            body {
+                overflow: auto;
+            }
+
+            .camera-container {
+                grid-template-columns: 1fr;
+
+                grid-template-rows:
+                    minmax(400px, 1fr)
+                    minmax(400px, 1fr);
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="header">
+
+    <div class="title">
+        实时相机监控
+    </div>
+
+    <div
+        class="status"
+        id="serverStatus"
+    >
+        MediaMTX WebRTC
+    </div>
+
+</div>
+
+
+<div class="camera-container">
+
+
+    <!-- USB -->
+
+
+    <div class="camera-card">
+
+        <div class="camera-header">
+
+            <div class="camera-name">
+                USB SIDE
+            </div>
+
+            <div class="camera-info">
+                L26716269
+            </div>
+
+        </div>
+
+
+        <div class="video-box">
+
+            <iframe
+                id="usbFrame"
+                allow="autoplay; fullscreen; picture-in-picture"
+                scrolling="no"
+            ></iframe>
+
+        </div>
+
+    </div>
+
+
+    <!-- GigE -->
+
+
+    <div class="camera-card">
+
+        <div class="camera-header">
+
+            <div class="camera-name">
+                GIGE TOP
+            </div>
+
+            <div class="camera-info">
+                DA0742733
+            </div>
+
+        </div>
+
+
+        <div class="video-box">
+
+            <iframe
+                id="gigeFrame"
+                allow="autoplay; fullscreen; picture-in-picture"
+                scrolling="no"
+            ></iframe>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    const host =
+        window.location.hostname;
+
+
+    const mediamtxPort =
+        8889;
+
+
+    const options =
+        "?controls=false" +
+        "&muted=true" +
+        "&autoplay=true" +
+        "&playsInline=true";
+
+
+    const usbUrl =
+        `http://${host}:${mediamtxPort}/usb_side${options}`;
+
+
+    const gigeUrl =
+        `http://${host}:${mediamtxPort}/gige_top${options}`;
+
+
+    document
+        .getElementById(
+            "usbFrame"
+        )
+        .src = usbUrl;
+
+
+    document
+        .getElementById(
+            "gigeFrame"
+        )
+        .src = gigeUrl;
+
+
+    document
+        .getElementById(
+            "serverStatus"
+        )
+        .textContent =
+            `${host}:${mediamtxPort}`;
+
+</script>
+
+</body>
+
+</html>
